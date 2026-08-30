@@ -2461,7 +2461,8 @@
               "type": "booking"
             }
           ],
-          "imageUrl": "photos/stay-trolltunga.jpg"
+          "imageUrl": "photos/stay-trolltunga.jpg",
+          "address": "Skjeggedal, Ullensvang, Norway"
         }
       ]
     },
@@ -4145,7 +4146,8 @@
               "type": "booking"
             }
           ],
-          "imageUrl": "photos/stay-bergen.jpg"
+          "imageUrl": "photos/stay-bergen.jpg",
+          "address": "Bergen, Vestland, Norway"
         }
       ]
     },
@@ -5872,7 +5874,8 @@
               "type": "booking"
             }
           ],
-          "imageUrl": "photos/stay-tyinkrysset.jpg"
+          "imageUrl": "photos/stay-tyinkrysset.jpg",
+          "address": "Tyinkrysset, Vang, Norway"
         }
       ]
     },

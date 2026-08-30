@@ -14,8 +14,8 @@ function readParams() {
   const day = rawDay !== null && trip.days.some((d) => d.dayNumber === Number(rawDay))
     ? Number(rawDay)
     : null
-  // A ?day= link was aimed at the itinerary view.
-  const view: ViewMode = q.get('view') === 'detail' || day !== null ? 'detail' : 'tour'
+  // The itinerary is the default screen; the tour is opt-in.
+  const view: ViewMode = q.get('view') === 'tour' ? 'tour' : 'detail'
   return { day, view }
 }
 
@@ -30,7 +30,7 @@ export default function App() {
   // Mirror the view mode and selected day into the URL (FR-DAY-6).
   useEffect(() => {
     const url = new URL(window.location.href)
-    if (view === 'detail') url.searchParams.set('view', 'detail')
+    if (view === 'tour') url.searchParams.set('view', 'tour')
     else url.searchParams.delete('view')
     if (view === 'detail' && selectedDay !== null) {
       url.searchParams.set('day', String(selectedDay))
@@ -119,11 +119,11 @@ export default function App() {
           <button
             type="button"
             className="iconbtn iconbtn--panel"
-            aria-label={panelOpen ? 'Collapse itinerary panel' : 'Expand itinerary panel'}
-            title={panelOpen ? 'Collapse itinerary panel' : 'Expand itinerary panel'}
+            aria-label={panelOpen ? 'Hide itinerary' : 'Show itinerary'}
+            title={panelOpen ? 'Hide itinerary' : 'Show itinerary'}
             onClick={() => setPanelOpen((v) => !v)}
           >
-            {panelOpen ? '⇥' : '⇤'}
+            {panelOpen ? '✕' : '☰'}
           </button>
         </div>
       </header>

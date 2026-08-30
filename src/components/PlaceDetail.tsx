@@ -34,6 +34,9 @@ export default function PlaceDetail({ place }: { place: Place }) {
       {place.description && <p className="detail__desc">{place.description}</p>}
 
       <dl className="detail__facts">
+        {place.address && (
+          <div><dt>Address</dt><dd>{place.address}</dd></div>
+        )}
         {place.time && (
           <div><dt>Time</dt><dd>{place.time}</dd></div>
         )}

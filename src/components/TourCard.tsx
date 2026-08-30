@@ -60,6 +60,8 @@ export default function TourCard({ stop, index, total, arrived }: Props) {
         {place.priceNote ? ` · ${place.priceNote}` : ''}
       </p>
 
+      {place.address && <p className="tourcard__address">{place.address}</p>}
+
       {place.description && <p className="tourcard__desc">{place.description}</p>}
 
       {notes.length > 0 && (

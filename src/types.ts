@@ -67,6 +67,8 @@ export interface Place {
   checkIn?: string
   checkOut?: string
   nights?: number
+  /** Street address, as supplied by the traveller. */
+  address?: string
   /** Local clock time, "HH:MM". Set only where the time actually matters. */
   time?: string
   /**

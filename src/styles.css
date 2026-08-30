@@ -318,9 +318,12 @@ button { font: inherit; color: inherit; }
     flex-wrap: wrap; gap: 8px; padding: 10px 12px 8px; align-items: flex-start;
   }
   .topbar__title h1 { font-size: 14px; }
+  /* Let the title share its row with the buttons instead of pushing them onto
+     a second line; the subtitle truncates rather than forcing a wrap. */
+  .topbar__title { flex: 1; min-width: 0; }
+  .topbar__sub { overflow: hidden; text-overflow: ellipsis; }
   .daytabs { order: 3; width: 100%; padding-bottom: 2px; }
   .topbar__actions { order: 2; }
-  .iconbtn--panel { display: none; }
 
   .body { display: block; }
   .map { position: absolute; inset: 0; }
@@ -337,8 +340,6 @@ button { font: inherit; color: inherit; }
     width: 38px; height: 4px; margin: 7px auto 3px;
     border-radius: 999px; background: var(--border-strong);
   }
-  .app--panel-closed .panel { display: flex; }
-
   .map__reset { top: auto; bottom: calc(46vh + 12px); }
 }
 
