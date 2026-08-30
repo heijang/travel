@@ -227,6 +227,9 @@ button { font: inherit; color: inherit; }
 .item__meta { font-size: 11.5px; color: var(--fg-faint); }
 
 .item__detail { padding: 0 12px 12px; border-top: 1px solid var(--border); }
+/* Rows are always expanded, so the detail starts right under the row header. */
+.item__detail .detail__figure { margin-top: 10px; }
+.detail__local--row { margin: 10px 0 0; }
 
 /* ─────────────────────────────── Notes */
 .notes { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
@@ -273,7 +276,8 @@ button { font: inherit; color: inherit; }
 
 .detail__facts { margin: 10px 0 0; display: grid; gap: 4px; font-size: 12.5px; }
 .detail__facts > div { display: flex; gap: 8px; }
-.detail__facts dt { flex: none; width: 40px; color: var(--fg-faint); }
+/* Wide enough for the longest label ("Duration"); 40px let it collide with the value. */
+.detail__facts dt { flex: none; width: 64px; color: var(--fg-faint); }
 .detail__facts dd { margin: 0; font-variant-numeric: tabular-nums; }
 
 .tags { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; }

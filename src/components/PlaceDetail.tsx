@@ -2,19 +2,33 @@ import type { Place } from '../types'
 import { PLACE_ICON, PLACE_LABEL, formatDate, formatDuration } from '../lib/trip'
 import NoteList from './NoteList'
 
-export default function PlaceDetail({ place }: { place: Place }) {
+interface Props {
+  place: Place
+  /** Skip the name/type header when the surrounding row already shows it. */
+  hideHeader?: boolean
+}
+
+export default function PlaceDetail({ place, hideHeader = false }: Props) {
   const duration = formatDuration(place.durationMin)
   return (
     <article className="detail">
-      <header className="detail__head">
-        <span className="detail__icon" aria-hidden="true">{PLACE_ICON[place.type]}</span>
-        <div>
-          <h3 className="detail__name">{place.name}</h3>
-          {place.nameLocal && <p className="detail__local">{place.nameLocal}</p>}
-        </div>
-      </header>
+      {!hideHeader && (
+        <>
+          <header className="detail__head">
+            <span className="detail__icon" aria-hidden="true">{PLACE_ICON[place.type]}</span>
+            <div>
+              <h3 className="detail__name">{place.name}</h3>
+              {place.nameLocal && <p className="detail__local">{place.nameLocal}</p>}
+            </div>
+          </header>
 
-      <p className="detail__type">{PLACE_LABEL[place.type]}</p>
+          <p className="detail__type">{PLACE_LABEL[place.type]}</p>
+        </>
+      )}
+
+      {hideHeader && place.nameLocal && (
+        <p className="detail__local detail__local--row">{place.nameLocal}</p>
+      )}
 
       {place.imageUrl && (
         <figure className="detail__figure">

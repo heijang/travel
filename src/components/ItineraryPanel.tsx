@@ -39,7 +39,7 @@ function ItemRow({
       onMouseEnter={() => onHover(true)}
       onMouseLeave={() => onHover(false)}
     >
-      <button type="button" className="item__head" onClick={onSelect} aria-expanded={selected}>
+      <button type="button" className="item__head" onClick={onSelect}>
         <span className="item__order">{carriedOver ? '–' : index}</span>
         <span className="item__icon" aria-hidden="true">{PLACE_ICON[place.type]}</span>
         <span className="item__text">
@@ -60,11 +60,9 @@ function ItemRow({
           </span>
         </span>
       </button>
-      {selected && (
-        <div className="item__detail">
-          <PlaceDetail place={place} />
-        </div>
-      )}
+      <div className="item__detail">
+        <PlaceDetail place={place} hideHeader />
+      </div>
     </li>
   )
 }
