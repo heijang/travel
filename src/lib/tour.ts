@@ -18,9 +18,13 @@ export const MODE_SPEED: Record<TransportMode, number> = {
   car: 42, bus: 36, ferry: 18, train: 6, hike: 4.5, walk: 1, flight: 90,
 }
 
-/** Follow-camera zoom per mode. */
+/**
+ * Follow-camera zoom per mode. Deliberately wide: at these levels most of the
+ * trip stays on screen while the car moves, which reads better than a close
+ * chase view. Roughly whole-route framing for the driving legs.
+ */
 export const MODE_ZOOM: Record<TransportMode, number> = {
-  car: 7.6, bus: 7.6, ferry: 9, train: 10, hike: 11, walk: 13.5, flight: 5.5,
+  car: 6.9, bus: 6.9, ferry: 8, train: 8.5, hike: 9.5, walk: 12, flight: 5,
 }
 
 /** Retraced stretches are skipped through faster. */

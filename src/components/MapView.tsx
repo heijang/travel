@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import maplibregl, { type LngLatBoundsLike } from 'maplibre-gl'
 import type { Feature, FeatureCollection, LineString } from 'geojson'
 import type { Place } from '../types'
-import { useMapLibre, type Theme } from '../lib/useMapLibre'
+import { useMapLibre } from '../lib/useMapLibre'
 import {
   MODE_LINE, PLACE_ICON, dayBounds, findDay, findPlace,
   strongestNoteKind, trip, tripBounds, NOTE_ICON,
@@ -167,13 +167,12 @@ interface Props {
   selectedDay: number | null
   selectedPlaceId: string | null
   hoveredPlaceId: string | null
-  theme: Theme
   onSelectPlace: (id: string | null) => void
   renderPopup: (place: Place) => React.ReactNode
 }
 
 export default function MapView({
-  selectedDay, selectedPlaceId, hoveredPlaceId, theme, onSelectPlace, renderPopup,
+  selectedDay, selectedPlaceId, hoveredPlaceId, onSelectPlace, renderPopup,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const markersRef = useRef<Map<string, maplibregl.Marker>>(new Map())
@@ -182,7 +181,6 @@ export default function MapView({
   const [popupPlace, setPopupPlace] = useState<Place | null>(null)
 
   const { mapRef, ready } = useMapLibre(containerRef, {
-    theme,
     center: trip.initialView.center,
     zoom: trip.initialView.zoom,
   })

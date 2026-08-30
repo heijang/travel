@@ -5,7 +5,6 @@ import ItineraryPanel from './components/ItineraryPanel'
 import PlaceDetail from './components/PlaceDetail'
 import TourMap from './components/TourMap'
 import { findPlace, trip } from './lib/trip'
-import type { Theme } from './lib/useMapLibre'
 
 type ViewMode = 'tour' | 'detail'
 
@@ -20,32 +19,13 @@ function readParams() {
   return { day, view }
 }
 
-function systemTheme(): Theme {
-  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-}
-
 export default function App() {
   const initial = useMemo(readParams, [])
   const [view, setView] = useState<ViewMode>(initial.view)
   const [selectedDay, setSelectedDay] = useState<number | null>(initial.day)
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null)
   const [hoveredPlaceId, setHoveredPlaceId] = useState<string | null>(null)
-  const [theme, setTheme] = useState<Theme>(systemTheme)
   const [panelOpen, setPanelOpen] = useState(true)
-
-  // Follow the system theme until the user toggles, then keep their choice.
-  const [themeLocked, setThemeLocked] = useState(false)
-  useEffect(() => {
-    if (themeLocked) return
-    const mq = window.matchMedia('(prefers-color-scheme: dark)')
-    const onChange = () => setTheme(mq.matches ? 'dark' : 'light')
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
-  }, [themeLocked])
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme
-  }, [theme])
 
   // Mirror the view mode and selected day into the URL (FR-DAY-6).
   useEffect(() => {
@@ -102,18 +82,6 @@ export default function App() {
     [selectedDay],
   )
 
-  const themeButton = (
-    <button
-      type="button"
-      className="iconbtn"
-      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-      title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-      onClick={() => { setThemeLocked(true); setTheme(theme === 'dark' ? 'light' : 'dark') }}
-    >
-      {theme === 'dark' ? '☀' : '🌙'}
-    </button>
-  )
-
   const viewButton = (
     <button
       type="button"
@@ -130,9 +98,8 @@ export default function App() {
       <div className="app app--tour">
         <div className="tour__topbar">
           {viewButton}
-          {themeButton}
         </div>
-        <TourMap theme={theme} />
+        <TourMap />
       </div>
     )
   }
@@ -149,7 +116,6 @@ export default function App() {
         <DayTabs selectedDay={selectedDay} onSelect={selectDay} />
         <div className="topbar__actions">
           {viewButton}
-          {themeButton}
           <button
             type="button"
             className="iconbtn iconbtn--panel"
@@ -167,7 +133,6 @@ export default function App() {
           selectedDay={selectedDay}
           selectedPlaceId={selectedPlaceId}
           hoveredPlaceId={hoveredPlaceId}
-          theme={theme}
           onSelectPlace={selectPlace}
           renderPopup={(place) => <PlaceDetail place={place} />}
         />

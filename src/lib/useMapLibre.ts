@@ -1,15 +1,9 @@
 import { useEffect, useRef, useState, type RefObject } from 'react'
 import maplibregl, { type Map as MlMap } from 'maplibre-gl'
 
-export const STYLE_URL = {
-  light: 'https://tiles.openfreemap.org/styles/liberty',
-  dark: 'https://tiles.openfreemap.org/styles/dark',
-} as const
-
-export type Theme = keyof typeof STYLE_URL
+export const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty'
 
 interface Options {
-  theme: Theme
   center: [number, number]
   zoom: number
   interactive?: boolean
@@ -38,13 +32,10 @@ interface Options {
  */
 export function useMapLibre(
   containerRef: RefObject<HTMLDivElement | null>,
-  { theme, center, zoom, interactive = true }: Options,
+  { center, zoom, interactive = true }: Options,
 ) {
   const mapRef = useRef<MlMap | null>(null)
   const [ready, setReady] = useState(false)
-
-  const themeRef = useRef(theme)
-  themeRef.current = theme
 
   useEffect(() => {
     const container = containerRef.current
@@ -57,7 +48,7 @@ export function useMapLibre(
     const createMap = () => {
       const map = new maplibregl.Map({
         container,
-        style: STYLE_URL[themeRef.current],
+        style: STYLE_URL,
         center,
         zoom,
         interactive,
@@ -100,20 +91,9 @@ export function useMapLibre(
       mapRef.current = null
       setReady(false)
     }
-    // Initial camera and `interactive` are read once, at creation. Theme is handled below.
+    // Initial camera and `interactive` are read once, at creation.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  // Swap the style on theme change. Skipped on first run — it already matches.
-  const appliedThemeRef = useRef<Theme | null>(null)
-  useEffect(() => {
-    const map = mapRef.current
-    if (!map || !ready) return
-    if (appliedThemeRef.current === null) { appliedThemeRef.current = theme; return }
-    if (appliedThemeRef.current === theme) return
-    appliedThemeRef.current = theme
-    map.setStyle(STYLE_URL[theme])
-  }, [theme, ready])
 
   return { mapRef, ready }
 }

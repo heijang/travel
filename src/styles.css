@@ -28,31 +28,6 @@
   color-scheme: light;
 }
 
-:root[data-theme='dark'] {
-  --bg: #14161a;
-  --bg-soft: #1b1e24;
-  --bg-sunk: #23272e;
-  --fg: #e8eaee;
-  --fg-muted: #a2a9b4;
-  --fg-faint: #767d88;
-  --border: #2c313a;
-  --border-strong: #3d434e;
-  --accent: #4dabf7;
-  --shadow: 0 2px 8px rgb(0 0 0 / 40%), 0 8px 24px rgb(0 0 0 / 32%);
-
-  --warning-fg: #ffc078;
-  --warning-bg: #2e2213;
-  --warning-bar: #e8892b;
-  --tip-fg: #8ec5f5;
-  --tip-bg: #14263a;
-  --tip-bar: #3b8fd8;
-  --note-fg: #b6bcc5;
-  --note-bg: #22262d;
-  --note-bar: #767d88;
-
-  color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
 
 html, body, #root { height: 100%; }
@@ -545,7 +520,9 @@ button { font: inherit; color: inherit; }
 @media (max-width: 899px) {
   .tourcard {
     left: 12px; right: 12px; width: auto; top: 12px;
-    max-height: 38%;
+    /* Long descriptions were getting cut off at 38%. Give the card most of
+       the screen and let it scroll — the map is still readable behind it. */
+    max-height: 62%;
   }
   .tour__topbar { top: auto; bottom: 68px; right: 12px; }
   /* Dead centre would cover the whole route. Shift it up. */
@@ -617,7 +594,7 @@ button { font: inherit; color: inherit; }
 }
 
 @media (max-width: 899px) {
-  .tourcard__photo { height: 116px; }
+  .tourcard__photo { height: 104px; }
 }
 
 /* ── Photo credit. Commons images are licensed, so attribution ships with them. */

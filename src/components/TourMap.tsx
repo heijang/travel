@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import maplibregl, { type LngLatBoundsLike } from 'maplibre-gl'
-import { useMapLibre, type Theme } from '../lib/useMapLibre'
+import { useMapLibre } from '../lib/useMapLibre'
 import { MODE_ZOOM, getTour, positionAt, speedAt, type Tour } from '../lib/tour'
 import { MODE_ICON, boundsOf, trip } from '../lib/trip'
 import TourCard from './TourCard'
@@ -81,17 +81,12 @@ function gradientFor(bands: Band[], progress: number): maplibregl.ExpressionSpec
   return expr as maplibregl.ExpressionSpecification
 }
 
-interface Props {
-  theme: Theme
-}
-
-export default function TourMap({ theme }: Props) {
+export default function TourMap() {
   const containerRef = useRef<HTMLDivElement>(null)
   const tour = useMemo(() => getTour(), [])
   const bands = useMemo(() => buildBands(tour), [tour])
 
   const { mapRef, ready } = useMapLibre(containerRef, {
-    theme,
     center: trip.initialView.center,
     zoom: trip.initialView.zoom,
   })
