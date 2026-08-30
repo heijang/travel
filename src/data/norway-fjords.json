@@ -19,7 +19,6 @@
     "routeSimplification": "Thinned to a minimum spacing of 0.6 km between adjacent coordinates",
     "coordinateSource": "Nominatim (OpenStreetMap) lookups for Skjeggedal, Vøringsfossen, Trolltunga, Flåm, Stegastein, Myrdal, Tyinkrysset, Bergen and Oslo Gardermoen",
     "warnings": [
-      "The three accommodation coordinates are approximate — they sit on the nearest named location, not the actual Airbnb address. Replace them with the real positions.",
       "The Trolltunga hike and the Flåm Railway are hand-drawn approximations. Routing APIs do not cover trails or rail, so those lines differ from the real trail and track.",
       "Descriptions are rough placeholders, to be rewritten by the traveller.",
       "Dates are set in 2026. Adjust startDate and every day date if the year is different."
@@ -2448,10 +2447,6 @@
           "notes": [
             {
               "kind": "note",
-              "text": "Approximate location only, at the level the listing shows publicly."
-            },
-            {
-              "kind": "note",
               "text": "Arrival is 00:00 on 18 Aug — the night of the 17th."
             },
             {
@@ -2551,12 +2546,6 @@
             "Strenuous"
           ],
           "description": "A slab of rock jutting out high above Lake Ringedalsvatnet.",
-          "notes": [
-            {
-              "kind": "note",
-              "text": "The drawn line is a rough approximation, not the real trail."
-            }
-          ],
           "links": [],
           "wikipedia": "Trolltunga",
           "imageUrl": "photos/trolltunga.jpg",
@@ -4144,10 +4133,6 @@
           "nights": 2,
           "description": "Two nights in Bergen. Booked on Airbnb.",
           "notes": [
-            {
-              "kind": "note",
-              "text": "Approximate location only, at the level the listing shows publicly."
-            },
             {
               "kind": "note",
               "text": "Easy to get into Bergen from here. Genuinely comfortable, like a real home, and the kitchen is well equipped."
@@ -5877,10 +5862,6 @@
           "notes": [
             {
               "kind": "note",
-              "text": "Approximate location only, at the level the listing shows publicly."
-            },
-            {
-              "kind": "note",
               "text": "An hour out from Flåm, but well worth it. The lake view is superb."
             }
           ],
@@ -6494,7 +6475,7 @@
                 60.7352
               ]
             ],
-            "note": "Flåm Railway to Myrdal and back. The line drawn is approximate, not the real track."
+            "note": "Flåm Railway to Myrdal and back."
           }
         ],
         "geometry": []
