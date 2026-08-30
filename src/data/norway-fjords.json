@@ -6503,7 +6503,13 @@
           "links": [],
           "wikipedia": "Flåm Line",
           "imageUrl": "photos/flamsbana.jpg",
-          "imageCredit": "Karen · CC BY 2.0 · Wikimedia Commons"
+          "imageCredit": "Karen · CC BY 2.0 · Wikimedia Commons",
+          "notes": [
+            {
+              "kind": "warning",
+              "text": "If you already have a car, the railway is not worth what it costs. We would not recommend it."
+            }
+          ]
         }
       ],
       "notes": [
